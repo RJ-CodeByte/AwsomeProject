@@ -7,9 +7,11 @@
     "ios": "react-native run-ios",
     "lint": "eslint .",
     "start": "react-native start",
-    "pod":"npx pod-install",
+    "pod": "npx pod-install",
     "reset": "npm start -- --reset-cache",
-    "test": "jest"
+    "test": "jest",
+    "ios:dev": "npx   react-native run-ios --mode=Debug --scheme \"dev\"",
+    "ios:staging": "npx   react-native run-ios --mode=Debug --scheme \"stg\""
   },
   "dependencies": {
     "@react-native-community/netinfo": "^11.3.1",
@@ -21,6 +23,7 @@
     "eslint-import-resolver-babel-plugin-root-import": "^1.1.1",
     "react": "18.2.0",
     "react-native": "0.73.7",
+    "react-native-config": "^1.5.1",
     "react-native-image-picker": "^7.1.2",
     "react-native-permissions": "^4.1.5",
     "react-native-safe-area-context": "^4.9.0",
