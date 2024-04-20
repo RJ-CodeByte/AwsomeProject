@@ -10,8 +10,8 @@ import {
   ViewStyle,
 } from 'react-native';
 import { styles } from './styles';
-import Assets from '~/~/constants/assets';
-import Color from '~/~/constants/colors';
+import Assets from '~/./constants/assets';
+import Color from '~/./constants/colors';
 
 interface RadioButtonProps {
   options: object[];

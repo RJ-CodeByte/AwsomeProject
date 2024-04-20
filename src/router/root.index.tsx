@@ -37,7 +37,7 @@ const Stack = createNativeStackNavigator<MainStackParamList>();
 function AuthStack() {
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
-      <Stack.Screen name={ScreenNames.Splash} component={Splash} />
+      {/* <Stack.Screen name={ScreenNames.Splash} component={Splash} />
       <Stack.Screen name={ScreenNames.OnBoard} component={OnBoard} />
       <Stack.Screen name={ScreenNames.ChooseAuth} component={ChooseAuth} />
       <Stack.Screen name={ScreenNames.SignInForm} component={SignInForm} />
@@ -56,7 +56,7 @@ function AuthStack() {
       <Stack.Screen name={ScreenNames.OTP} component={OTP} />
       <Stack.Screen name={ScreenNames.AddProfile} component={AddProfile} />
       <Stack.Screen name={ScreenNames.Membership} component={Membership} />
-      <Stack.Screen name={ScreenNames.TermsOfUse} component={TermsOfUse} />
+      <Stack.Screen name={ScreenNames.TermsOfUse} component={TermsOfUse} /> */}
       <Stack.Screen name={ScreenNames.Home} component={Home} />
     </Stack.Navigator>
   );

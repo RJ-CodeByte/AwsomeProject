@@ -1,6 +1,5 @@
-import moment from 'moment';
+
 import { Alert, Dimensions, Linking, Platform } from 'react-native';
-import DeviceInfo from 'react-native-device-info';
 import {
   ImageLibraryOptions,
   ImagePickerResponse,
@@ -27,10 +26,7 @@ export const isUndefined = (param: any): boolean => {
   return param === undefined;
 };
 
-export const getDeviceID = () => {
-  const deviceId = DeviceInfo.getDeviceId() ?? 'notfound';
-  return deviceId;
-};
+
 
 export const GET_DEVICE_TYPE = Platform.OS === 'android' ? 'ANDROID' : 'IOS';
 export const PLATFORM_OS = Platform.OS;
@@ -40,13 +36,7 @@ export const getDeviceHeight = () => {
   return Math.round(Dimensions.get('window').height);
 };
 
-export function setFormatedDate(date: any) {
-  let local = '';
-  if (date) {
-    local = moment(date).format('MM/DD/YYYY');
-  }
-  return local;
-}
+
 
 const isValidEmail = (email: string) =>
   /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(
@@ -217,6 +207,14 @@ export const captureImageFromCamera = (
 
 const formatJson = (data: any) => {
   return JSON.stringify(data, null, 2);
+};
+
+export const splitFileName = (filePath: string) => {
+  if (filePath) {
+    const url = filePath;
+    const fileName = url.substring(url.lastIndexOf('/') + 1);
+    return fileName;
+  }
 };
 
 const NormalAlert = (onOkPress: any) => {

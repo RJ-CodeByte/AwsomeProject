@@ -1,21 +1,38 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { getStateApi } from '.';
+import { getPokemonApi, getPokemonTypeApi } from '.';
 
-export const GetStateApiAction = createAsyncThunk(
+// export const GetStateApiAction = createAsyncThunk(
+//   'GetStateApiAction',
+//   async () => {
+//     const response = await getStateApi();
+//     // console.log('🚀 ~getStateApi response:', Utility.formatJson(response));
+//     return response;
+//   },
+// );
+export const GetPokemonApiAction = createAsyncThunk(
   'GetStateApiAction',
   async () => {
-    const response = await getStateApi();
-    // console.log('🚀 ~getStateApi response:', Utility.formatJson(response));
+    const response = await getPokemonApi();
+    return response;
+  },
+);
+
+export const GetPokemonTypeApiAction = createAsyncThunk(
+  'GetPokemonTypeApiAction',
+  async (Id: number) => {
+    const response = await getPokemonTypeApi(Id);
     return response;
   },
 );
 
 interface ICommonSlice {
-  stateRes: StateRes[] | null;
+  pokemonRes: Pokemon[] | null;
+  pokemonType: PokemonTypes[] | null;
 }
 
 const initialState: ICommonSlice = {
-  stateRes: null,
+  pokemonRes: null,
+  pokemonType: null,
 };
 
 // reducer
@@ -23,11 +40,17 @@ const commonSlice = createSlice({
   name: 'common',
   initialState: initialState,
   reducers: {},
-  extraReducers: (builder) => {
-    builder.addCase(GetStateApiAction.fulfilled, (state, _action) => {
-      state.stateRes = _action.payload.data;
+  extraReducers: builder => {
+    builder.addCase(GetPokemonApiAction.fulfilled, (state, _action) => {
+      state.pokemonRes = _action.payload;
     });
-    builder.addCase(GetStateApiAction.rejected, (state, _action) => {
+    builder.addCase(GetPokemonApiAction.rejected, (state, _action) => {
+      throw Error(_action.error.message);
+    });
+    builder.addCase(GetPokemonTypeApiAction.fulfilled, (state, _action) => {
+      state.pokemonType = _action.payload;
+    });
+    builder.addCase(GetPokemonTypeApiAction.rejected, (state, _action) => {
       throw Error(_action.error.message);
     });
   },

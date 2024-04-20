@@ -1,11 +1,8 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { loginApi, logoutApi } from '.';
-import Language from '~/~/~/constants/language';
-import { showSnackBar } from '~/~/~/utils/commonUtils';
-import { VerifyOtpApiAction } from '~/otp/slice';
-import {
-  AddSubscriptionApiAction
-} from '~/subscription/slice';
+import Language from '~/././constants/language';
+import { showSnackBar } from '~/././utils/commonUtils';
+
 import { SignUpApiAction, UploadProfileAction } from './signup/slice';
 
 export const LoginApiAction = createAsyncThunk(
@@ -76,36 +73,6 @@ const authSlice = createSlice({
       showSnackBar(_action.payload.message);
     });
     builder.addCase(UploadProfileAction.rejected, (state, _action) => {
-      if (
-        _action?.error?.message !== undefined &&
-        _action.error.message !== null
-      ) {
-        showSnackBar(_action?.error?.message?.toString());
-        throw Error(_action.error.message);
-      } else {
-        showSnackBar(Language.Something_Went_Wrong_Pelase_Try_Again);
-      }
-    });
-    builder.addCase(AddSubscriptionApiAction.fulfilled, (state, _action) => {
-      state.userResponse = _action.payload.data;
-      showSnackBar(_action.payload.message);
-    });
-    builder.addCase(AddSubscriptionApiAction.rejected, (state, _action) => {
-      if (
-        _action?.error?.message !== undefined &&
-        _action.error.message !== null
-      ) {
-        showSnackBar(_action?.error?.message?.toString());
-        throw Error(_action.error.message);
-      } else {
-        showSnackBar(Language.Something_Went_Wrong_Pelase_Try_Again);
-      }
-    });
-    builder.addCase(VerifyOtpApiAction.fulfilled, (state, _action) => {
-      state.userResponse = _action.payload.data;
-      showSnackBar(_action.payload.message);
-    });
-    builder.addCase(VerifyOtpApiAction.rejected, (state, _action) => {
       if (
         _action?.error?.message !== undefined &&
         _action.error.message !== null

@@ -2,7 +2,7 @@ import { Text, View, Image } from 'react-native';
 import React from 'react';
 import { styles } from './styles';
 import { Dropdown } from 'react-native-element-dropdown';
-import Assets from '~/~/constants/assets';
+import Assets from '~/./constants/assets';
 import { errorMessage } from '~/InputComponent';
 
 export interface DropDownData {

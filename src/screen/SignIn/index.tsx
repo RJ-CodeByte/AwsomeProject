@@ -8,27 +8,27 @@ import {
   TouchableOpacity,
   View
 } from 'react-native';
-import CustomButton from '~/~/components/CustomButton';
-import CustomFooter from '~/~/components/CustomFooter';
-import CustomToolBar from '~/~/components/CustomToolBar';
-import InputComponent from '~/~/components/InputComponent';
-import TitleBar from '~/~/components/TitleBar';
-import Assets from '~/~/constants/assets';
-import Language from '~/~/constants/language';
-import ScreenNames from '~/~/constants/screenNames';
-import Loader from '~/~/helper/Loader';
-import { MainStackParamList } from '~/~/router/root.index';
-import { LoginApiAction } from '~/~/service/apis/auth/slice';
-import { AppDispatch, useAppDispatch } from '~/~/store/store.hooks';
-import { getFCMToken } from '~/~/utils/FcmTokenUtils';
-import { innerContainer } from '~/~/utils/commonStyle';
+import CustomButton from '~/./components/CustomButton';
+import CustomFooter from '~/./components/CustomFooter';
+import CustomToolBar from '~/./components/CustomToolBar';
+import InputComponent from '~/./components/InputComponent';
+import TitleBar from '~/./components/TitleBar';
+import Assets from '~/./constants/assets';
+import Language from '~/./constants/language';
+import ScreenNames from '~/./constants/screenNames';
+import Loader from '~/./helper/Loader';
+import { MainStackParamList } from '~/./router/root.index';
+import { LoginApiAction } from '~/./service/apis/auth/slice';
+import { AppDispatch, useAppDispatch } from '~/./store/store.hooks';
+import { getFCMToken } from '~/./utils/FcmTokenUtils';
+import { innerContainer } from '~/./utils/commonStyle';
 import {
   GET_DEVICE_TYPE,
   Utility,
   handleEmailValidation,
   handleFormValidation,
   showSnackBar
-} from '~/~/utils/commonUtils';
+} from '~/./utils/commonUtils';
 import styles from './styles';
 interface SignInFormData {
   email: string;

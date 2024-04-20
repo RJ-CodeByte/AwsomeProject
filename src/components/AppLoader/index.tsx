@@ -4,7 +4,7 @@
 import React, { forwardRef, useImperativeHandle, useState } from 'react';
 import { ActivityIndicator, Modal, View } from 'react-native';
 import styles from './styles';
-import Color from '~/~/constants/colors';
+import Color from '~/./constants/colors';
 
 /* The code is defining a functional component called `AppLoader` using the `forwardRef` function from
 React. */

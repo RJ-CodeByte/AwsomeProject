@@ -8,7 +8,7 @@ import {
   View,
   ViewStyle
 } from 'react-native';
-import Assets from '~/~/constants/assets';
+import Assets from '~/./constants/assets';
 import { styles } from './styles';
 interface TitleBarProps {
   title: string;

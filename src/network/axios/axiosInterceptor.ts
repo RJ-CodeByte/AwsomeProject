@@ -1,9 +1,9 @@
 import { CommonActions } from '@react-navigation/native';
-import ScreenNames from '~/~/constants/screenNames';
-import { navigationRef } from '~/~/helper/NavigationRef';
-import { AuthSliceActions } from '~/~/service/apis/auth/slice';
-import setupStore from '~/~/store/store.index';
-import { isFalsyValue } from '~/~/utils/commonUtils';
+import ScreenNames from '~/./constants/screenNames';
+import { navigationRef } from '~/./helper/NavigationRef';
+import { AuthSliceActions } from '~/./service/apis/auth/slice';
+import setupStore from '~/./store/store.index';
+import { isFalsyValue } from '~/./utils/commonUtils';
 import { AxiosInstance } from './axiosInstance';
 
 AxiosInstance.interceptors.request.use(

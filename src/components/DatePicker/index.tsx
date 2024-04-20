@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import DatePicker from 'react-native-date-picker';
 import InputComponent from '~/InputComponent';
-import Language from '~/~/constants/language';
+import Language from '~/./constants/language';
 import { styles } from './style';
-import { setFormatedDate } from '~/~/utils/commonUtils';
+import { setFormatedDate } from '~/./utils/commonUtils';
 import { FieldError } from 'react-hook-form';
 
 interface DatePickerProps {

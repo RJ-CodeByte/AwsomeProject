@@ -1,6 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { signupApi, uploadPhotoApi as uploadProfileApi } from '..';
-import { Utility } from '~/~/~/~/utils/commonUtils';
+import { Utility } from '~/./././utils/commonUtils';
 
 export const SignUpApiAction = createAsyncThunk(
   'SignUpApiAction',

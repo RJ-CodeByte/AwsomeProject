@@ -1,13 +1,13 @@
 import { View, Text, Modal, TouchableOpacity, Alert } from 'react-native';
 import React from 'react';
 import { styles } from './styles';
-import Language from '~/~/constants/language';
-import Color from '~/~/constants/colors';
+import Language from '~/./constants/language';
+import Color from '~/./constants/colors';
 import {
   captureImageFromCamera,
   selectImageFromGallery,
-} from '~/~/utils/commonUtils';
-import { FileType } from '~/~/types/signup';
+} from '~/./utils/commonUtils';
+import { FileType } from '~/./types/signup';
 
 interface BottomSheetProps {
   isVisible: boolean;

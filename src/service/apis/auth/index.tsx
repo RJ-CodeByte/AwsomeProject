@@ -1,6 +1,6 @@
-import Network from '~/~/~/constants/network';
-import { ApiResponseType } from '~/~/~/types/network';
-import AxiosInterceptor from '~/~/~/network/axios/axiosInterceptor';
+import Network from '~/././constants/network';
+import { ApiResponseType } from '~/././types/network';
+import AxiosInterceptor from '~/././network/axios/axiosInterceptor';
 
 // create account api
 export const signupApi = async (

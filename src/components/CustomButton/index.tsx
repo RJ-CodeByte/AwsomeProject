@@ -10,8 +10,8 @@ import {
 } from 'react-native';
 import React from 'react';
 import { styles } from './styles';
-import Assets from '~/~/constants/assets';
-import Color from '~/~/constants/colors';
+import Assets from '~/./constants/assets';
+import Color from '~/./constants/colors';
 interface Props extends TouchableOpacityProps {
   title: string;
   titleStyle?: StyleProp<TextStyle>;

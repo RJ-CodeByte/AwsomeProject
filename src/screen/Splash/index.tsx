@@ -2,12 +2,12 @@ import { CommonActions } from '@react-navigation/native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import React, { useEffect } from 'react';
 import { ImageBackground, StatusBar } from 'react-native';
-import ScreenNames from '~/~/constants/screenNames';
-import { SignUpStepEnum } from '~/~/enum';
-import { MainStackParamList } from '~/~/router/root.index';
-import setupStore from '~/~/store/store.index';
+import ScreenNames from '~/./constants/screenNames';
+import { SignUpStepEnum } from '~/./enum';
+import { MainStackParamList } from '~/./router/root.index';
+import setupStore from '~/./store/store.index';
 import styles from '~/SignIn/styles';
-// import { SignUpStepEnum } from '~/~/types/signup';
+// import { SignUpStepEnum } from '~/./types/signup';
 
 export type SplashFormProps = NativeStackScreenProps<
   MainStackParamList,

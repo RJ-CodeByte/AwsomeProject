@@ -9,10 +9,10 @@ import {
   ViewStyle,
 } from 'react-native';
 import styles from './styles';
-import Assets from '~/~/constants/assets';
-import Language, { errorMsg } from '~/~/constants/language';
+import Assets from '~/./constants/assets';
+import Language, { errorMsg } from '~/./constants/language';
 import { FieldError } from 'react-hook-form';
-import Color from '~/~/constants/colors';
+import Color from '~/./constants/colors';
 interface Props {
   mainContainerStyle?: StyleProp<ViewStyle>;
   label: string;

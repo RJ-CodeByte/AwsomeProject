@@ -1,11 +1,8 @@
 const Network = {
-  baseUrl: 'https://node-goat-grub-backend.agiletechnologies.in/',
+  baseUrl: 'https://pokeapi.co/api/v2/',
+  imgeUrl:'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/',
   endpoints: {
-    signup: 'users/signup',
-    states: 'states',
-    uploadProfile: 'users/auth/uploadProfile',
-    login: 'users/login',
-    logOut: 'users/auth/signOut',
+    pokemon:'pokemon',
   },
 };
 export default Network;

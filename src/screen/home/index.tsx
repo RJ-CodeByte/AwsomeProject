@@ -1,55 +1,74 @@
-import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import React from 'react';
-import { Text, View } from 'react-native';
-import { MainStackParamList } from '~/~/router/root.index';
-import ScreenNames from '~/~/constants/screenNames';
+import React, { useEffect, useMemo } from 'react'
+import { FlatList, SafeAreaView, Text, View } from 'react-native'
+import CardItem from '~/components/CardItem';
+import { GetPokemonApiAction, GetPokemonTypeApiAction } from '~/service/apis/common/slice';
+import {AppDispatch, RootStoreState, useAppDispatch, useAppSelector} from '~/store/store.hooks';
 import { styles } from './styles';
-import CustomButton from '~/~/components/CustomButton';
-import Language from '~/~/constants/language';
-import {
-  AppDispatch,
-  RootStoreState,
-  useAppDispatch,
-  useAppSelector,
-} from '~/~/store/store.hooks';
-import { getDeviceID, showSnackBar } from '~/~/utils/commonUtils';
-import { LogoutApiAction } from '~/~/service/apis/auth/slice';
-import Loader from '~/~/helper/Loader';
 
-type Props = NativeStackScreenProps<MainStackParamList, ScreenNames.Home>;
-
-const Home = (_props: Props) => {
-  const navigation = _props.navigation;
+const Home = () => {
   const dispatch: AppDispatch = useAppDispatch();
-  const userResponseRes = useAppSelector(
-    (state: RootStoreState) => state.auth.userResponse,
-  );
+  const pokemonRes = useAppSelector((state:RootStoreState)=>state.common.pokemonRes)
 
-  const onLogout = async () => {
-    const deviceId = await getDeviceID();
-    const payload: ILogOutReq = {
-      deviceId: deviceId,
-    };
+  
+  useEffect(() => {
+    getAllPockemon();    
+  }, []);
+
+  const getAllPockemon = async () => {
     try {
-      Loader.showLoader();
-      await dispatch(LogoutApiAction(payload));
-      navigation.replace('OnBoard', {});
-    } catch (e) {
-      showSnackBar(String(e));
-    } finally {
-      Loader.hideLoader();
+      await dispatch(GetPokemonApiAction());
+
+    } catch (error) {
+      console.log('🚀 ~ getAllPockemon ~ error:', error);
     }
-  };
+  }
+ 
+  
+  useEffect(() => {
+    if(pokemonRes?.length>0){
+      pokemonRes?.map((obj,index)=>getPokemonType(index))
+    }
+  }, [pokemonRes]);
 
+  const getPokemonType = async (id:number) => {
+  try {
+      await dispatch(GetPokemonTypeApiAction(id));
+  } catch (e) {
+      console.log('🚀 ~ getPokemonType ~ e:', e);
+    
+  }
+}
+
+
+
+  
+// const pokemon = useMemo(()=>{
+//   if(PokemonType?.length>0){
+//     pokemonRes?.map((obj)=>)PokemonType?.map((obj)=>({
+      
+//       type:obj?.type?.name,
+//       name:title?.name,
+//       id: id,
+//       color:
+//     }))
+//   }
+// },[pokemonRes,PokemonType]);
+
+
+
+
+  
   return (
-    <View style={styles.container}>
-      {/* <Text>{'Home Screen'}</Text> */}
-      <Text>First Name: {userResponseRes?.firstName}</Text>
-      <Text>Last Name: {userResponseRes?.lastName}</Text>
-      <Text>Email: {userResponseRes?.email}</Text>
-      <CustomButton title={Language.LogOut} onPress={onLogout} />
-    </View>
-  );
-};
+    <SafeAreaView style={styles.container}>
+      <FlatList
+      numColumns={2}
+        style={{flex: 1, backgroundColor: 'green'}}
+        data={pokemonRes}
+        renderItem={({item,index}) => <CardItem item={item} id={index+1}/>}
+      />
+      {/* <Text>Hello world</Text> */}
+    </SafeAreaView>
+  )
+}
 
-export default Home;
+export default Home

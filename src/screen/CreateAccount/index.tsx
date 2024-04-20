@@ -3,28 +3,28 @@ import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import React, { useEffect, useMemo } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { KeyboardAvoidingView, Platform, ScrollView, View } from 'react-native';
-import BulletPointText from '~/~/components/BulletPointText';
-import CustomButton from '~/~/components/CustomButton';
-import CustomToolBar from '~/~/components/CustomToolBar';
-import CustomDatePicker from '~/~/components/DatePicker';
-import DropDown from '~/~/components/DropDown';
-import InputComponent from '~/~/components/InputComponent';
-import TitleBar from '~/~/components/TitleBar';
-import Assets from '~/~/constants/assets';
-import Language, { errorMsg } from '~/~/constants/language';
-import ScreenNames from '~/~/constants/screenNames';
-import Loader from '~/~/helper/Loader';
-import { MainStackParamList } from '~/~/router/root.index';
-import { SignUpApiAction } from '~/~/service/apis/auth/signup/slice';
-import { GetStateApiAction } from '~/~/service/apis/common/slice';
+import BulletPointText from '~/./components/BulletPointText';
+import CustomButton from '~/./components/CustomButton';
+import CustomToolBar from '~/./components/CustomToolBar';
+import CustomDatePicker from '~/./components/DatePicker';
+import DropDown from '~/./components/DropDown';
+import InputComponent from '~/./components/InputComponent';
+import TitleBar from '~/./components/TitleBar';
+import Assets from '~/./constants/assets';
+import Language, { errorMsg } from '~/./constants/language';
+import ScreenNames from '~/./constants/screenNames';
+import Loader from '~/./helper/Loader';
+import { MainStackParamList } from '~/./router/root.index';
+import { SignUpApiAction } from '~/./service/apis/auth/signup/slice';
+import { GetStateApiAction } from '~/./service/apis/common/slice';
 import {
   AppDispatch,
   RootStoreState,
   useAppDispatch,
   useAppSelector,
-} from '~/~/store/store.hooks';
-import { ISignUpReq } from '~/~/types/signup';
-import { getFCMToken } from '~/~/utils/FcmTokenUtils';
+} from '~/./store/store.hooks';
+import { ISignUpReq } from '~/./types/signup';
+import { getFCMToken } from '~/./utils/FcmTokenUtils';
 import {
   GET_DEVICE_TYPE,
   Utility,
@@ -37,7 +37,7 @@ import {
   showSnackBar,
   specialCharacterRegex,
   validateBirthdate
-} from '~/~/utils/commonUtils';
+} from '~/./utils/commonUtils';
 import styles from './styles';
 
 interface CreateAccountData {
