@@ -1,14 +1,14 @@
-import React, { useEffect, useMemo } from 'react'
-import { FlatList, SafeAreaView, Text, View } from 'react-native'
+/* eslint-disable prettier/prettier */
+import React, { useEffect } from 'react';
+import { FlatList, SafeAreaView } from 'react-native';
 import CardItem from '~/components/CardItem';
-import { GetPokemonApiAction, GetPokemonTypeApiAction } from '~/service/apis/common/slice';
-import {AppDispatch, RootStoreState, useAppDispatch, useAppSelector} from '~/store/store.hooks';
+import { GetPokemonApiAction, GetPokemonTypeApiAction, updateRes } from '~/service/apis/common/slice';
+import { AppDispatch, RootStoreState, useAppDispatch, useAppSelector } from '~/store/store.hooks';
 import { styles } from './styles';
 
 const Home = () => {
   const dispatch: AppDispatch = useAppDispatch();
-  const pokemonRes = useAppSelector((state:RootStoreState)=>state.common.pokemonRes)
-
+  const pokemonRes = useAppSelector((state:RootStoreState)=>state.common.pokemonRes);
   
   useEffect(() => {
     getAllPockemon();    
@@ -22,37 +22,41 @@ const Home = () => {
       console.log('🚀 ~ getAllPockemon ~ error:', error);
     }
   }
- 
   
-  useEffect(() => {
-    if(pokemonRes?.length>0){
-      pokemonRes?.map((obj,index)=>getPokemonType(index))
-    }
-  }, [pokemonRes]);
 
+  useEffect(() => {
+    const fetchDetailsForPokemon = async () => {
+      if (pokemonRes?.length > 0) {
+        // Create an array of promises for each API call
+        const fetchPromises = pokemonRes.map(async(pokemon,index) => {
+          const res=await getPokemonType(index+1);
+          return {
+            ...pokemon,
+            type: res,
+          };
+        });
+        const detailsArray = await Promise.all(fetchPromises);
+        dispatch(updateRes.updatePockemonRes(detailsArray));
+      }
+    };
+    fetchDetailsForPokemon();
+  }, [dispatch,pokemonRes]);
+
+  
+  
   const getPokemonType = async (id:number) => {
   try {
-      await dispatch(GetPokemonTypeApiAction(id));
+      const res = await dispatch(GetPokemonTypeApiAction(id));
+      const arr= res.payload[0]?.type?.name;
+      return arr;
   } catch (e) {
       console.log('🚀 ~ getPokemonType ~ e:', e);
-    
   }
 }
 
 
 
   
-// const pokemon = useMemo(()=>{
-//   if(PokemonType?.length>0){
-//     pokemonRes?.map((obj)=>)PokemonType?.map((obj)=>({
-      
-//       type:obj?.type?.name,
-//       name:title?.name,
-//       id: id,
-//       color:
-//     }))
-//   }
-// },[pokemonRes,PokemonType]);
 
 
 

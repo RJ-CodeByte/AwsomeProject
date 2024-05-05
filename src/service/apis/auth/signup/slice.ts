@@ -16,7 +16,7 @@ export const UploadProfileAction = createAsyncThunk(
   async (params: IUploadProfileReq) => {
     const response = await uploadProfileApi(params);
     console.log(
-      '🚀 ~UploadProfileAction response:',
+      // '🚀 ~UploadProfileAction response:',
       Utility.formatJson(response),
     );
     return response;

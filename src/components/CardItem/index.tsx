@@ -1,10 +1,4 @@
-import { View, Text, Image } from 'react-native'
-import React, { useEffect, useMemo } from 'react'
-import { styles } from './styles';
-import Network from '~/constants/network';
-import { AppDispatch, RootStoreState, useAppDispatch, useAppSelector } from '~/store/store.hooks';
-import { GetPokemonTypeApiAction } from '~/service/apis/common/slice';
-import Color from '~/constants/colors';
+import React from 'react';
 import PokemonImage from '../PokemonImage';
 
 interface ICardProps {
@@ -12,20 +6,19 @@ interface ICardProps {
   id:number;
 }
 
+const typeColors = {
+  grass: '#78C850',
+  fire: '#F08030',
+  water: '#6890F0',
+  bug: '#A8B820',
+};
 const CardItem = (props:ICardProps) => {
   const {item: title,id}= props;
-  // const dispatch: AppDispatch = useAppDispatch();
-  const PokemonType = useAppSelector(
-    (state: RootStoreState) => state.common.pokemonType);
-  
-    
 
   
-  // const backgroundColor = pokemonColors['fire'];
-  // console.log("🚀 ~ CardItem ~ backgroundColor:",pokemon)
+  const backgroundColor = typeColors[title.type] || '#A8A878'; 
   return (
-    
-    <PokemonImage name={title.name} id={id} color='#FFF'/>
+    <PokemonImage name={title.name} id={id} color={backgroundColor}/>
   )
 }
 

@@ -21,6 +21,7 @@ export const GetPokemonTypeApiAction = createAsyncThunk(
   'GetPokemonTypeApiAction',
   async (Id: number) => {
     const response = await getPokemonTypeApi(Id);
+    // console.log("🚀 ~ response:", response)
     return response;
   },
 );
@@ -39,7 +40,11 @@ const initialState: ICommonSlice = {
 const commonSlice = createSlice({
   name: 'common',
   initialState: initialState,
-  reducers: {},
+  reducers: {
+    updatePockemonRes:(state,action)=>{
+      state.pokemonRes = action.payload
+    }
+  },
   extraReducers: builder => {
     builder.addCase(GetPokemonApiAction.fulfilled, (state, _action) => {
       state.pokemonRes = _action.payload;
@@ -56,5 +61,5 @@ const commonSlice = createSlice({
   },
 });
 
-export const loaderChange = commonSlice.actions; // for slice reducers
+export const updateRes = commonSlice.actions; // for slice reducers
 export default commonSlice;

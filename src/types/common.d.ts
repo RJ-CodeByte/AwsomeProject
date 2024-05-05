@@ -3,6 +3,7 @@ interface Pokemon {
   _id: string;
   name: string;
   shortName: string;
+  type: any;
 }
 
 // verify otp request
@@ -17,10 +18,10 @@ interface IReSentOtpReq {
 }
 
 
-interface Pokemon {
-  name: string;
-  url: string;
-}
+// interface Pokemon {
+//   name: string;
+//   url: string;
+// }
 
 interface PokemonTypes {
   slot?: number

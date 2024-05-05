@@ -19,9 +19,8 @@ export const getPokemonApi = async (): Promise<Pokemon[]> => {
 export const getPokemonTypeApi = async (Id:number): Promise<PokemonTypes[]> => {
   const url = `${Network.endpoints.pokemon}/${Id}`;
   const response = await AxiosInterceptor.get(url);
-  console.log("🚀 ~ getPokemonTypeApi ~ response:", response.data.types)
+  // console.log("🚀 ~ getPokemonTypeApi ~ response:", response.data.types)
   if(response.data.types.length>0){
-
     return response?.data.types;
   }
 };

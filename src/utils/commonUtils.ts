@@ -209,11 +209,19 @@ const formatJson = (data: any) => {
   return JSON.stringify(data, null, 2);
 };
 
-export const splitFileName = (filePath: string) => {
-  if (filePath) {
-    const url = filePath;
-    const fileName = url.substring(url.lastIndexOf('/') + 1);
-    return fileName;
+export const splitFileName = (urlString: string) => {
+  // console.log("🚀 ~ splitFileName ~ urlString:", urlString)
+  if (urlString) {
+    var regex = /\/(\d+)\/$/;
+
+    // Extracting the number using match method
+    var match = urlString.match(regex);
+    
+    // Accessing the extracted number
+    var number = match[1];
+    
+    // console.log("Extracted number:", number);
+    return number;
   }
 };
 
@@ -236,7 +244,6 @@ const noInternetAlert = () => {
 
 export const Utility = {
   getAndroidApiLevel,
-  getDeviceID,
   openSetting,
   formatJson,
   NormalAlert,
