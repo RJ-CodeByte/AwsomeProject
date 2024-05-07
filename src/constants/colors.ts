@@ -13,3 +13,25 @@ const Color = {
   RED: 'red',
 };
 export default Color;
+
+
+export const POKEMON_TYPE_COLORS = {
+  "grass": '#78C850',
+  "poison": '#98558e',
+  "fire": '#FB6C6C',
+  "flying": '#A890F0',
+  "bug": '#48D0B0',
+  "water": '#7AC7FF',
+  "normal": '#bcbcad',
+  "ground": '#eece5a',
+  "fairy": '#f9acff',
+  "electric": '#fee53c',
+  "fighting": '#a75544',
+  "psychic": '#f160aa',
+  "rock": '#cebd74',
+  "steel": '#c4c2db',
+  "ice": '#96f1ff',
+  "ghost": '#7C538C',
+  "dragon": '#7038F8',
+  "dark": '#8f6955',
+};

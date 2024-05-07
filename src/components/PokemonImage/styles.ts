@@ -10,8 +10,7 @@ export const styles = StyleSheet.create({
     padding:10
 },
 imgStyle:{
-    // height:100,
-    width:'100%',
-    aspectRatio:8/9
+  width:'100%',
+aspectRatio:5/5
 }
 })

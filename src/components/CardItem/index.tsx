@@ -1,22 +1,18 @@
 import React from 'react';
 import PokemonImage from '../PokemonImage';
+import { POKEMON_TYPE_COLORS } from '~/constants/colors';
 
 interface ICardProps {
   item: Pokemon;
   id:number;
 }
 
-const typeColors = {
-  grass: '#78C850',
-  fire: '#F08030',
-  water: '#6890F0',
-  bug: '#A8B820',
-};
+
 const CardItem = (props:ICardProps) => {
   const {item: title,id}= props;
 
   
-  const backgroundColor = typeColors[title.type] || '#A8A878'; 
+  const backgroundColor = POKEMON_TYPE_COLORS[title.type] || '#A8A878'; 
   return (
     <PokemonImage name={title.name} id={id} color={backgroundColor}/>
   )
