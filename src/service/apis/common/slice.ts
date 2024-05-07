@@ -1,19 +1,20 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { getPokemonApi, getPokemonTypeApi } from '.';
+import setupStore from '~/store/store.index';
 
-// export const GetStateApiAction = createAsyncThunk(
-//   'GetStateApiAction',
-//   async () => {
-//     const response = await getStateApi();
-//     // console.log('🚀 ~getStateApi response:', Utility.formatJson(response));
-//     return response;
-//   },
-// );
 export const GetPokemonApiAction = createAsyncThunk(
   'GetStateApiAction',
-  async () => {
-    const response = await getPokemonApi();
-    return response;
+  async (page:number) => {
+    console.log("Pgae",page);
+    const response = await getPokemonApi(page);
+    const prvRes = setupStore.getState().common.pokemonRes;
+      if(response.length > 0 && page>1 && prvRes){
+        const res= [...prvRes, ...response]
+        return res
+      }else{
+        return response;
+      }
+    
   },
 );
 
@@ -43,7 +44,7 @@ const commonSlice = createSlice({
   reducers: {
     updatePockemonRes:(state,action)=>{
       state.pokemonRes = action.payload
-    }
+    },
   },
   extraReducers: builder => {
     builder.addCase(GetPokemonApiAction.fulfilled, (state, _action) => {

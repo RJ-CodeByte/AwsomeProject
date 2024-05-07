@@ -1,5 +1,5 @@
 /* eslint-disable prettier/prettier */
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { FlatList, SafeAreaView } from 'react-native';
 import CardItem from '~/components/CardItem';
 import { GetPokemonApiAction, GetPokemonTypeApiAction, updateRes } from '~/service/apis/common/slice';
@@ -9,37 +9,44 @@ import { styles } from './styles';
 const Home = () => {
   const dispatch: AppDispatch = useAppDispatch();
   const pokemonRes = useAppSelector((state:RootStoreState)=>state.common.pokemonRes);
+  const [page, setPage] = useState<number>(1)
   
   useEffect(() => {
-    getAllPockemon();    
+    getAllPockemon(page);    
   }, []);
+  useEffect(() => {
+    if(page > 1){
+      getAllPockemon(page);    
+    } 
+  }, [page]);
 
-  const getAllPockemon = async () => {
+  
+
+  const getAllPockemon = async (page: number) => {
     try {
-      await dispatch(GetPokemonApiAction());
+     const res= await dispatch(GetPokemonApiAction(page));
+     if(res.payload){
+        const pokemons = res.payload;
+        if (pokemons && pokemons?.length > 0) {
+          // Create an array of promises for each API call
+          const fetchPromises = pokemons?.map(async(pokemon,index) => {
+            const res=await getPokemonType(index+1);
+            return {
+              ...pokemon,
+              type: res,
+            };
+          });
+          const detailsArray = await Promise.all(fetchPromises); // when all the apis call successfully then promise.all will add all the api response into single array 
+          dispatch(updateRes.updatePockemonRes(detailsArray));
+        }
+     }
+     console.log("pokemon",res.payload);
     } catch (error) {
       console.log('🚀 ~ getAllPockemon ~ error:', error);
     }
   }
   
 
-  useEffect(() => {
-    const fetchDetailsForPokemon = async () => {
-      if (pokemonRes?.length > 0) {
-        // Create an array of promises for each API call
-        const fetchPromises = pokemonRes.map(async(pokemon,index) => {
-          const res=await getPokemonType(index+1);
-          return {
-            ...pokemon,
-            type: res,
-          };
-        });
-        const detailsArray = await Promise.all(fetchPromises); // when all the apis call successfully then promise.all will add all the api response into single array 
-        dispatch(updateRes.updatePockemonRes(detailsArray));
-      }
-    };
-    fetchDetailsForPokemon();
-  }, [dispatch,pokemonRes]);
 
   
   
@@ -53,12 +60,9 @@ const Home = () => {
   }
 }
 
-
-
-  
-
-
-
+const onEndHandler = () =>{
+  setPage(page+1);
+}
 
   
   return (
@@ -68,6 +72,7 @@ const Home = () => {
         style={{flex: 1, backgroundColor: 'green'}}
         data={pokemonRes}
         renderItem={({item,index}) => <CardItem item={item} id={index+1}/>}
+        onEndReached={onEndHandler}
       />
       {/* <Text>Hello world</Text> */}
     </SafeAreaView>

@@ -8,8 +8,10 @@ import AxiosInterceptor from '~/././network/axios/axiosInterceptor';
 //   return response?.data;
 // };
 
-export const getPokemonApi = async (): Promise<Pokemon[]> => {
-  const url = `${Network.endpoints.pokemon}?limit=10&offset=0`;
+export const getPokemonApi = async (page:number): Promise<Pokemon[]> => {
+  const offset = (page-1) * 20
+  console.log("Offset",offset)
+  const url = `${Network.endpoints.pokemon}?limit=10&offset=${offset}`;
   const response = await AxiosInterceptor.get(url);
   // console.log("🚀 ~ getPokemonApi ~ response:", response)
   return response?.data.results ? response?.data.results : [];
