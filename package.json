@@ -8,6 +8,7 @@
     "lint": "eslint .",
     "start": "react-native start",
     "pod": "npx pod-install",
+    "xcw": "cd ios && xed *.xcworkspace",
     "reset": "npm start -- --reset-cache",
     "test": "jest",
     "ios:dev": "npx   react-native run-ios --mode=Debug --scheme \"dev\"",

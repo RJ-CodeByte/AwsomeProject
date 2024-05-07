@@ -17,7 +17,6 @@ const Home = () => {
   const getAllPockemon = async () => {
     try {
       await dispatch(GetPokemonApiAction());
-
     } catch (error) {
       console.log('🚀 ~ getAllPockemon ~ error:', error);
     }
@@ -35,7 +34,7 @@ const Home = () => {
             type: res,
           };
         });
-        const detailsArray = await Promise.all(fetchPromises);
+        const detailsArray = await Promise.all(fetchPromises); // when all the apis call successfully then promise.all will add all the api response into single array 
         dispatch(updateRes.updatePockemonRes(detailsArray));
       }
     };
