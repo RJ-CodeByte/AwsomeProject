@@ -5,7 +5,6 @@ import setupStore from '~/store/store.index';
 export const GetPokemonApiAction = createAsyncThunk(
   'GetStateApiAction',
   async (page:number) => {
-    console.log("Pgae",page);
     const response = await getPokemonApi(page);
     const prvRes = setupStore.getState().common.pokemonRes;
       if(response.length > 0 && page>1 && prvRes){
@@ -27,14 +26,15 @@ export const GetPokemonTypeApiAction = createAsyncThunk(
   },
 );
 
+
 interface ICommonSlice {
   pokemonRes: Pokemon[] | null;
-  pokemonType: PokemonTypes[] | null;
+  // pokemonType: PokemonTypes[] | null;
 }
 
 const initialState: ICommonSlice = {
   pokemonRes: null,
-  pokemonType: null,
+  // pokemonType: null,
 };
 
 // reducer
@@ -51,12 +51,6 @@ const commonSlice = createSlice({
       state.pokemonRes = _action.payload;
     });
     builder.addCase(GetPokemonApiAction.rejected, (state, _action) => {
-      throw Error(_action.error.message);
-    });
-    builder.addCase(GetPokemonTypeApiAction.fulfilled, (state, _action) => {
-      state.pokemonType = _action.payload;
-    });
-    builder.addCase(GetPokemonTypeApiAction.rejected, (state, _action) => {
       throw Error(_action.error.message);
     });
   },

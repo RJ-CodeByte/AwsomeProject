@@ -1,9 +1,8 @@
 // state API response
 interface Pokemon {
-  _id: string;
   name: string;
-  shortName: string;
-  type: any;
+  url:string;
+  type: string;
 }
 
 // verify otp request
@@ -17,15 +16,9 @@ interface IReSentOtpReq {
   email: string;
 }
 
-
-// interface Pokemon {
-//   name: string;
-//   url: string;
-// }
-
 interface PokemonTypes {
-  slot?: number
-  type: PokemonType
+  slot: number
+  type: PokemonType[]
 }
 
 interface PokemonType {

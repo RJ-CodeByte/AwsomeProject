@@ -10,9 +10,7 @@ interface ICardProps {
 
 const CardItem = (props:ICardProps) => {
   const {item: title,id}= props;
-
-  
-  const backgroundColor = POKEMON_TYPE_COLORS[title.type] || '#A8A878'; 
+  const backgroundColor:string = POKEMON_TYPE_COLORS[title.type] || '#A8A878'; 
   return (
     <PokemonImage name={title.name} id={id} color={backgroundColor}/>
   )

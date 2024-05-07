@@ -14,8 +14,11 @@ const Color = {
 };
 export default Color;
 
+interface TypeColors {
+  [key: string]: string; // Index signature for dynamic keys (Pokémon types)
+}
 
-export const POKEMON_TYPE_COLORS = {
+export const POKEMON_TYPE_COLORS:TypeColors = {
   "grass": '#78C850',
   "poison": '#98558e',
   "fire": '#FB6C6C',

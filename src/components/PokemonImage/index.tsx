@@ -6,7 +6,7 @@ import { styles } from './styles';
 
 interface PokemonImageProps{
     name:string;
-    id:string;
+    id:number;
     color:string
 }
 

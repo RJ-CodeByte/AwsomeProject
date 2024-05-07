@@ -1,16 +1,10 @@
 import Network from '~/././constants/network';
 import AxiosInterceptor from '~/././network/axios/axiosInterceptor';
 
-// get state api
-// export const getStateApi = async (): Promise<ApiResponseType<StateRes[]>> => {
-//   const url = `${Network.endpoints.states}`;
-//   const response = await AxiosInterceptor.get(url);
-//   return response?.data;
-// };
 
 export const getPokemonApi = async (page:number): Promise<Pokemon[]> => {
   const offset = (page-1) * 20
-  console.log("Offset",offset)
+  // console.log("Offset",offset)
   const url = `${Network.endpoints.pokemon}?limit=10&offset=${offset}`;
   const response = await AxiosInterceptor.get(url);
   // console.log("🚀 ~ getPokemonApi ~ response:", response)
@@ -24,5 +18,7 @@ export const getPokemonTypeApi = async (Id:number): Promise<PokemonTypes[]> => {
   // console.log("🚀 ~ getPokemonTypeApi ~ response:", response.data.types)
   if(response.data.types.length>0){
     return response?.data.types;
+  }else{
+    return response?.data.types
   }
 };
