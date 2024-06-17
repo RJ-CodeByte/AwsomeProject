@@ -3,7 +3,7 @@ import { getPokemonApi, getPokemonTypeApi } from '.';
 import setupStore from '~/store/store.index';
 
 export const GetPokemonApiAction = createAsyncThunk(
-  'GetStateApiAction',
+  'GetPokemonApiAction',
   async (page:number) => {
     const response = await getPokemonApi(page);
     const prvRes = setupStore.getState().common.pokemonRes;
